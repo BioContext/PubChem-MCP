@@ -5,7 +5,32 @@ build-backend = "hatchling.build"
 [project]
 name = "pubchem-mcp"
 version = "0.1.0"
-requires-python = ">=3.8"
+description = "An MCP (Model Context Protocol) server for accessing PubChem data"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [
+    {name = "BioContext"}
+]
+dependencies = [
+    "fastapi>=0.100.0",
+    "httpx>=0.24.1",
+    "mcp>=1.2.0",
+    "pydantic>=2.0.0",
+    "uvicorn>=0.22.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0.0",
+    "pytest-asyncio>=0.15.0",
+    "black>=21.5b2",
+    "isort>=5.9.0",
+    "mypy>=0.910",
+]
+
+[project.scripts]
+pubchem-mcp = "mcp_server.__main__:main"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/pubchem_mcp"]
+packages = ["mcp_server"]
